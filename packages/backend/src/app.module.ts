@@ -18,6 +18,8 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { Notification } from './notifications/notification.entity';
 import { LeaderboardModule } from './leaderboard/leaderboard.module';
 import { PlatformSettings } from './indexer/platform-settings.entity';
+import { BadgesModule } from './badges/badges.module';
+import { UserBadge } from './badges/badge.entity';
 
 @Module({
   imports: [
@@ -35,7 +37,7 @@ import { PlatformSettings } from './indexer/platform-settings.entity';
         username: configService.get<string>('DB_USERNAME', 'postgres'),
         password: configService.get<string>('DB_PASSWORD', 'postgres'),
         database: configService.get<string>('DB_DATABASE', 'back_it_onchain'),
-        entities: [User, Call, UserFollows, Notification, PlatformSettings],
+        entities: [User, Call, UserFollows, Notification, PlatformSettings, UserBadge],
         synchronize: true,
       }),
       inject: [ConfigService],
@@ -49,6 +51,7 @@ import { PlatformSettings } from './indexer/platform-settings.entity';
     FeedModule,
     NotificationsModule,
     LeaderboardModule,
+    BadgesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
